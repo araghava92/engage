@@ -41,7 +41,6 @@ public class ProductsController {
         }
     }
 
-
     @PostMapping("/")
     public void updateCategory(
             @RequestParam Integer id,

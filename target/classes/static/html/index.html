@@ -7,8 +7,10 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.js"></script>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
     <script type="text/javascript" src="../js/app.js"></script>
     <script type="text/javascript" src="../bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
     <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -25,9 +27,10 @@
                     class="glyphicon glyphicon-remove"></span></a>
             <a class="btn btn-primary btn-xs" data-nodrag ng-click="openEditModal(category)" style="margin-right: 8px;"><span
                     class="glyphicon glyphicon-edit"></span></a>
-            <a class="btn btn-primary btn-xs" data-nodrag ng-click="openProductsModal(category)" style="margin-right: 8px;">Products</span></a>
+            <a class="btn btn-primary btn-xs" data-nodrag ng-click="openProductsModal(category)"
+               style="margin-right: 8px;">Products</span></a>
         </div>
-        <ol ui-tree-nodes="" ng-model="category.children"  data-nodrag>
+        <ol ui-tree-nodes="" ng-model="category.children" data-nodrag>
             <li ng-repeat="category in category.children" ui-tree-node ng-include="'nodes_renderer.html'">
             </li>
         </ol>
@@ -46,9 +49,9 @@
     </div>
     <div>
         <h4>Add Category</h4>
-        <strong>Name</strong>: <input type="text" ng-model="newCategory.name" />
-        <strong>Parent</strong>: <input type="text" ng-model="newCategory.parent" />
-        <button ng-click="addCategory();">Add</button>
+        <strong>Name</strong>: <input type="text" ng-model="newCategory.name"/>
+        <strong>Parent</strong>: <input type="text" ng-model="newCategory.parent"/>
+        <button class="btn btn-primary" ng-click="addCategory();">Add</button>
     </div>
 </div>
 </body>

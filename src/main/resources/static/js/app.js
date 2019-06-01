@@ -78,7 +78,6 @@ app.controller('CategoriesController', function($scope, $http, $uibModal) {
     }
 
     $scope.openEditModal = function(category) {
-
         var pc = this;
         pc.updatedCategory = {
             id: category.id,
@@ -106,7 +105,6 @@ app.controller('CategoriesController', function($scope, $http, $uibModal) {
     }
 
     $scope.openProductsModal = function(category) {
-
         var pc = this;
         pc.categoryId = category.id;
 
@@ -129,6 +127,9 @@ app.controller('CategoriesController', function($scope, $http, $uibModal) {
     getCategories();
 });
 
+/*
+Categories Edit Modal Controller
+*/
 app.controller('EditModalInstanceCtrl', function ($scope, $uibModalInstance, updatedCategory) {
 
      var pc = this;
@@ -146,8 +147,9 @@ app.controller('EditModalInstanceCtrl', function ($scope, $uibModalInstance, upd
      };
 });
 
-
-
+/*
+Products Modal Controller
+*/
 app.controller('ProductsModalInstanceCtrl', function ($scope, $http, $uibModalInstance, categoryId) {
 
      var pc = this;
@@ -158,9 +160,7 @@ app.controller('ProductsModalInstanceCtrl', function ($scope, $http, $uibModalIn
         price: ''
      }
 
-
     // Products rest api calls
-
     function getProducts(categoryId) {
         $http({
             url: 'http://localhost:8080/products/',
@@ -174,7 +174,7 @@ app.controller('ProductsModalInstanceCtrl', function ($scope, $http, $uibModalIn
            });
     }
 
-     $scope.addProduct = function() {
+    $scope.addProduct = function() {
         $http({
             url: 'http://localhost:8080/products/',
             method: 'PUT',
@@ -192,9 +192,9 @@ app.controller('ProductsModalInstanceCtrl', function ($scope, $http, $uibModalIn
                };
                getProducts(categoryId);
         });
-     };
+    };
 
-     $scope.editProduct = function(product) {
+    $scope.editProduct = function(product) {
         $scope.editingProduct = {
             id: product.id,
             name: product.name,
@@ -202,9 +202,9 @@ app.controller('ProductsModalInstanceCtrl', function ($scope, $http, $uibModalIn
             price: product.price
         };
         product.editing = true;
-     };
+    };
 
-     $scope.updateProduct = function() {
+    $scope.updateProduct = function() {
         $http({
             url: 'http://localhost:8080/products/',
             method: 'POST',
@@ -217,9 +217,19 @@ app.controller('ProductsModalInstanceCtrl', function ($scope, $http, $uibModalIn
         }).then(function(response) {
                getProducts(categoryId);
         });
-     };
+    };
 
-     $scope.cancelEdit = function(product) {
+    $scope.deleteProduct = function(id) {
+        $http({
+            url: 'http://localhost:8080/products/' + id,
+            method: 'DELETE'
+        }).then(function(response) {
+               getProducts(categoryId);
+        });
+    }
+
+     // Events
+    $scope.cancelEdit = function(product) {
         $scope.editingProduct = {
             id: "",
             name: "",
@@ -227,20 +237,11 @@ app.controller('ProductsModalInstanceCtrl', function ($scope, $http, $uibModalIn
             price: ""
         };
         product.editing = false;
-     };
+    };
 
-     $scope.deleteProduct = function(id) {
-        $http({
-            url: 'http://localhost:8080/products/' + id,
-            method: 'DELETE'
-        }).then(function(response) {
-               getProducts(categoryId);
-        });
-     }
+    pc.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 
-     pc.cancel = function () {
-       $uibModalInstance.dismiss('cancel');
-     };
-
-     getProducts(categoryId);
+    getProducts(categoryId);
 });

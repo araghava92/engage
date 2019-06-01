@@ -32,8 +32,7 @@ public class CategoriesController {
         }
         categoryRepository.save(category);
     }
-
-
+    
     @PostMapping("/")
     public void updateCategory(
             @RequestParam Integer id,
