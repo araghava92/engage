@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Products</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div ng-repeat="product in products">
+        <strong> Name</strong>: {{product.name}}
+        <strong>UPC</strong>: {{product.upc}}
+        <strong> Price</strong>: {{product.price}}
+        <a class="btn btn-danger btn-xs" data-nodrag ng-click="deleteProduct(product.id)"><span
+                class="glyphicon glyphicon-remove"></span></a>
+        <br />
+    </div>
+</div>
+<div>
+    Name: <input type="text" ng-model="newProduct.name" /><br />
+    UPC: <input type="text" ng-model="newProduct.upc" /><br />
+    Price: <input type="text" ng-model="newProduct.price" /><br />
+    <button ng-click="addProduct();">Add</button>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="pc.cancel()">Close</button>
+</div>

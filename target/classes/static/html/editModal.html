@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Update Category</h3>
+</div>
+<div class="modal-body" id="modal-body">
+Id: <input type="text" disabled="disabled" value="{{categoryId}}" /><br />
+Name: <input type="text" ng-model="categoryName" />
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="pc.update()">Update</button>
+    <button class="btn btn-warning" type="button" ng-click="pc.cancel()">Cancel</button>
+</div>

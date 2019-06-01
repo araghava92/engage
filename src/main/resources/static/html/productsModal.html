@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Products</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div ng-repeat="product in products">
+        <span ng-if="!product.editing">
+            <strong> Name</strong>: {{product.name}}&nbsp;
+            <strong>UPC</strong>: {{product.upc}}&nbsp;
+            <strong> Price</strong>: {{product.price}}&nbsp;
+            <a class="btn btn-primary btn-xs" ng-click="editProduct(product);" style="margin-right: 8px;"><span
+                    class="glyphicon glyphicon-edit"></span></a>
+            <a class="btn btn-danger btn-xs" ng-click="deleteProduct(product.id)"><span
+                    class="glyphicon glyphicon-remove"></span></a>
+            <br/>
+        </span>
+        <span ng-if="product.editing == true">
+            <strong> Name</strong>: <input type="text" ng-model="editingProduct.name"/>&nbsp;
+            <strong>UPC</strong>: <input type="text" ng-model="editingProduct.UPC"/>&nbsp;
+            <strong> Price</strong>: <input type="text" ng-model="editingProduct.price"/>&nbsp;
+            <button class="btn btn-primary" ng-click="updateProduct();">Update</button>&nbsp;
+            <button class="btn btn-warning" ng-click="cancelEdit(product);">Cancel</button>
+            <br/>
+        </span>
+    </div>
+</div>
+<h4>Add Product</h4>
+<div>
+    Name: <input type="text" ng-model="newProduct.name"/>&nbsp;
+    UPC: <input type="text" ng-model="newProduct.upc"/>&nbsp;
+    Price: <input type="text" ng-model="newProduct.price"/>&nbsp;
+    <button class="btn btn-primary" ng-click="addProduct();">Add</button>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="pc.cancel()">Close</button>
+</div>

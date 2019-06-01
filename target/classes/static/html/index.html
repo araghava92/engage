@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="engage">
+<head>
+    <title>Categories</title>
+    <link rel="stylesheet" href="../bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap-css/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+</head>
+
+<body>
+<div ng-controller="CategoriesController">
+    <!-- Nested node template -->
+    <script type="text/ng-template" id="nodes_renderer.html">
+        <div ui-tree-handle data-nodrag class="tree-node tree-node-content">
+            {{category.name}}
+            <a class="btn btn-danger btn-xs" data-nodrag ng-click="deleteCategory(category.id)"><span
+                    class="glyphicon glyphicon-remove"></span></a>
+            <a class="btn btn-primary btn-xs" data-nodrag ng-click="openEditModal(category)" style="margin-right: 8px;"><span
+                    class="glyphicon glyphicon-edit"></span></a>
+            <a class="btn btn-primary btn-xs" data-nodrag ng-click="openProductsModal(category)" style="margin-right: 8px;">Products</span></a>
+        </div>
+        <ol ui-tree-nodes="" ng-model="category.children"  data-nodrag>
+            <li ng-repeat="category in category.children" ui-tree-node ng-include="'nodes_renderer.html'">
+            </li>
+        </ol>
+    </script>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div ui-tree ng-if="categories.length > 0" id="tree-root">
+                <ol ui-tree-nodes="" ng-model="categories" data-nodrag>
+                    <li ng-repeat="category in categories" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-sm-6">
+        </div>
+    </div>
+    <div>
+        <h4>Add Category</h4>
+        <strong>Name</strong>: <input type="text" ng-model="newCategory.name" />
+        <strong>Parent</strong>: <input type="text" ng-model="newCategory.parent" />
+        <button ng-click="addCategory();">Add</button>
+    </div>
+</div>
+</body>
+</html>
