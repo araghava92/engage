@@ -38,7 +38,7 @@
         <div class="col-sm-6">
             <div ui-tree ng-if="categories.length > 0" id="tree-root">
                 <ol ui-tree-nodes="" ng-model="categories" data-nodrag>
-                    <li ng-repeat="category in categories" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                    <li ng-repeat="category in categories" ng-if="!category.parent" ui-tree-node ng-include="'nodes_renderer.html'"></li>
                 </ol>
             </div>
         </div>
